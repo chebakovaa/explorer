@@ -24,6 +24,7 @@
       </div>
     </nav>
     <div class="window-content">
+      <Body/>
     </div>
   </div>
 </template>
@@ -32,13 +33,16 @@
 import { onMounted, defineComponent } from 'vue'
 import * as Metro from 'metro4'
 import router from '@/router'
+import Body from '@/components/Body.vue'
 
 export default defineComponent({
   name: "Home",
+  components: {
+    Body
+  },
   setup() {
 
     const showConfig = () => {
-      console.log('toConfig')
       router.push('config')
     }
 
@@ -57,15 +61,14 @@ export default defineComponent({
 
 <style>
 
-/* .window {
+.window {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  display: flex;
+  height: 100% !important;
   flex-flow: column nowrap;
-  position: relative !important;
-} */
+} 
 
 </style>

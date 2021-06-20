@@ -1,5 +1,5 @@
 <template>
-  <div class="" ref="element" style="width: 100%; height: 80vh">
+  <div class="" ref="element" style="width: 100%; height: 100%">
     <teleport
       v-for="{ id, type, element } in componentInstances"
       :key="id"
@@ -10,16 +10,17 @@
 </template>
 
 <script lang="ts">
-import { useGoldenLayout } from "../components/use-golden-layout";
+import { useGoldenLayout } from "./use-golden-layout";
 import { defineComponent, h, shallowRef } from "vue";
 import "golden-layout/dist/css/goldenlayout-base.css";
-import "golden-layout/dist/css/themes/goldenlayout-dark-theme.css";
+import "golden-layout/dist/css/themes/goldenlayout-light-theme.css";
 
 const Test = defineComponent({ render: () => h('span', 'It works!') });
 
 const components = { Test, /* other components */ };
 
 export default defineComponent({
+  name: "Body",
   components,
   setup() {
     interface ComponentInstance {
