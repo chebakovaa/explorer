@@ -1,6 +1,4 @@
 <template>
-<div >
-  
   <div class="" ref="element" style="width: 100%; height: 80vh">
     <teleport
       v-for="{ id, type, element } in componentInstances"
@@ -9,7 +7,6 @@
       <component :is="type"></component>
     </teleport>
   </div>
-</div>
 </template>
 
 <script lang="ts">
@@ -73,9 +70,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-position: absolute;
-    bottom: 10px;
-    top: 70px;
-    right: 10px;
-    left: 10px;
+
 </style>
