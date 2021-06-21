@@ -1,6 +1,5 @@
-# explorer
-front and back
+# Explorer
 
-Run App from root:
+## Run App from root:
 
 mvn --projects backend spring-boot:run
