@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-import Config from "../views/Config.vue";
+import Settings from "../views/Settings.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,9 +9,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/config",
-    name: "Config",
-    component: Config,
+    path: "/settings",
+    name: "Settings",
+    component: Settings,
   },
   {
     path: "/about",

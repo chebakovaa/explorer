@@ -1,5 +1,5 @@
 <template>
-  <div class="" ref="element" style="width: 100%; height: 100%">
+  <div class="" ref="element" style="width: 100%; height: 100%; display: block;">
     <teleport
       v-for="{ id, type, element } in componentInstances"
       :key="id"
@@ -11,18 +11,45 @@
 
 <script lang="ts">
 import { useGoldenLayout } from "./use-golden-layout";
-import { defineComponent, h, shallowRef } from "vue";
+import { defineComponent, h, onBeforeUnmount, shallowRef } from "vue";
 import "golden-layout/dist/css/goldenlayout-base.css";
 import "golden-layout/dist/css/themes/goldenlayout-light-theme.css";
+import { LayoutConfig } from "golden-layout";
 
 const Test = defineComponent({ render: () => h('span', 'It works!') });
 
 const components = { Test, /* other components */ };
 
+let glConfig = {
+      root: {
+        type: "row",
+        content: [ {
+              type: "component",
+              componentType: "Test",
+            },{
+          type: "column",
+          content: [
+            {
+              type: "component",
+              componentType: "Test",
+            },
+            {
+              type: "component",
+              componentType: "Test",
+            },
+          ] },
+        ]
+      }};
+
+
 export default defineComponent({
   name: "Body",
   components,
-  setup() {
+  setup(props, context) {
+
+    const config = localStorage.getItem('GL.config');
+    glConfig = config ? JSON.parse(config): glConfig;
+
     interface ComponentInstance {
       id: number;
       type: string;
@@ -49,20 +76,11 @@ export default defineComponent({
       );
     };
 
-    const { element } = useGoldenLayout(createComponent, destroyComponent, {
-      root: {
-        type: "column",
-        content: [
-          {
-            type: "component",
-            componentType: "Test",
-          },
-          {
-            type: "component",
-            componentType: "Test",
-          },
-        ],
-      },
+    const { element, layout } = useGoldenLayout(createComponent, destroyComponent, glConfig as LayoutConfig);
+
+    onBeforeUnmount(() => {
+      localStorage.setItem('GL.config', JSON.stringify(layout.value?.saveLayout()));
+      layout.value?.destroy();
     });
 
     return { element, componentInstances };
@@ -71,5 +89,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.lm_root {
+  height: 100% !important; 
+  width: 100vw !important;
+}
 </style>

@@ -1,20 +1,20 @@
 <template>
 <div class="config-frame">
-  <ConfigLeftPanel/>
-  <ConfigView/>
+  <SettingsLeftPanel/>
+  <SettingsView/>
 </div>  
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ConfigLeftPanel from '@/components/ConfigLeftPanel.vue'
-import ConfigView from '@/components/ConfigView.vue'
+import SettingsLeftPanel from '@/components/SettingsLeftPanel.vue'
+import SettingsView from '@/components/SettingsView.vue'
 
 export default defineComponent({
-  name: "Config",
+  name: "Settings",
   components: {
-    ConfigLeftPanel,
-    ConfigView
+    SettingsLeftPanel,
+    SettingsView
   },
 })
 </script>

@@ -30,7 +30,7 @@
 </template>
 
 <script lang = "ts">
-import { onMounted, defineComponent } from 'vue'
+import { onMounted, onBeforeUnmount, defineComponent } from 'vue'
 import * as Metro from 'metro4'
 import router from '@/router'
 import Body from '@/components/Body.vue'
@@ -40,15 +40,21 @@ export default defineComponent({
   components: {
     Body
   },
+
   setup() {
 
+
     const showConfig = () => {
-      router.push('config')
+      router.push('settings')
     }
 
     onMounted(() => {
       Metro.init();
     })
+
+    // onBeforeUnmount(() => {
+    //   Metro.destroy();
+    // })
     
     return {
       showConfig
