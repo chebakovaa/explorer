@@ -10,8 +10,17 @@
       </ul>
       <div class="content-holder">
         <div class="section" id="section-main">
-            <p class="p-4">Section Main</p>
-        </div>
+          <div class="group">
+                  <button class="ribbon-button">
+                          <span class="icon">
+                              <span class="mif-flow-cascade"></span>
+                          </span>
+                      <span class="caption">Data Tree</span>
+                  </button>
+
+                  <span class="title">Main elements</span>
+              </div>
+          </div>
         <div class="section" id="section-map">
             <p class="p-4">Section Map</p>
         </div>

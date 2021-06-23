@@ -1,5 +1,5 @@
 import { GoldenLayout, LayoutConfig } from 'golden-layout';
-import { onMounted, reactive, ref, shallowRef, watch, watchEffect } from 'vue';
+import { onMounted, ref, shallowRef } from 'vue';
 
 export const isClient = typeof window !== 'undefined';
 export const isDocumentReady = () => isClient && document.readyState === 'complete' && document.body != null;
