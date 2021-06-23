@@ -1,5 +1,5 @@
 <template>
-  <div class="" ref="element" style="width: 100%; height: 100%; display: block;">
+  <div class="gl-container" ref="element" style="width: 100%; height: 100%;">
     <teleport
       v-for="{ id, type, element } in componentInstances"
       :key="id"
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { useGoldenLayout } from "./use-golden-layout";
-import { defineComponent, h, onBeforeUnmount, shallowRef } from "vue";
+import { defineComponent, h, onBeforeUnmount, onMounted, shallowRef } from "vue";
 import "golden-layout/dist/css/goldenlayout-base.css";
 import "golden-layout/dist/css/themes/goldenlayout-light-theme.css";
 import { LayoutConfig } from "golden-layout";
@@ -76,21 +76,26 @@ export default defineComponent({
       );
     };
 
+    const _windowResizeListener = () => {
+      // const bodyWidth = document.body.offsetWidth;
+      const controlsWidth = element.value?.offsetWidth;
+      const controlsHeight = element.value?.offsetHeight;
+      // console.log("windowResize", element.value);
+      layout.value?.setSize(controlsWidth ? controlsWidth - 2: 0, (controlsHeight??0)-2)
+    };
+    window.addEventListener('resize', _windowResizeListener, { passive: true });
+
     const { element, layout } = useGoldenLayout(createComponent, destroyComponent, glConfig as LayoutConfig);
 
     onBeforeUnmount(() => {
       localStorage.setItem('GL.config', JSON.stringify(layout.value?.saveLayout()));
       layout.value?.destroy();
     });
-
+    
     return { element, componentInstances };
   },
 });
 </script>
 
 <style scoped>
-.lm_root {
-  height: 100% !important; 
-  width: 100vw !important;
-}
 </style>
