@@ -15,17 +15,18 @@ import { defineComponent, h, onBeforeUnmount, onMounted, shallowRef } from "vue"
 import "golden-layout/dist/css/goldenlayout-base.css";
 import "golden-layout/dist/css/themes/goldenlayout-light-theme.css";
 import { LayoutConfig } from "golden-layout";
+import DataStructure from "./DataStructure.vue";
 
 const Test = defineComponent({ render: () => h('span', 'It works!') });
 
-const components = { Test, /* other components */ };
+const components = { Test, DataStructure };
 
 let glConfig = {
       root: {
         type: "row",
         content: [ {
               type: "component",
-              componentType: "Test",
+              componentType: "DataStructure",
             },{
           type: "column",
           content: [
