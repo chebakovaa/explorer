@@ -1,4 +1,5 @@
 import { GoldenLayout, LayoutConfig } from 'golden-layout';
+import { nextTick } from 'vue';
 import { onMounted, ref, shallowRef } from 'vue';
 
 export const isClient = typeof window !== 'undefined';
@@ -40,12 +41,11 @@ export function useGoldenLayout(
 
         // https://github.com/microsoft/TypeScript/issues/34933
         layout.value = goldenLayout as any;
-
-        setTimeout(() => {
+        nextTick(() => {
             const controlsWidth = element.value?.offsetWidth;
             const controlsHeight = element.value?.offsetHeight;
             layout.value?.setSize(controlsWidth ? controlsWidth - 2: 0, (controlsHeight??0)-2);
-        }, 0)
+        });
         initialized.value = true;
     });
 

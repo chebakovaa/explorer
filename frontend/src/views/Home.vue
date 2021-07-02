@@ -52,7 +52,6 @@ export default defineComponent({
 
   setup() {
 
-
     const showConfig = () => {
       router.push('settings')
     }
